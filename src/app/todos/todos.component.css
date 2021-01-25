@@ -1,0 +1,44 @@
+
+ul{
+list-style: none;
+margin-top: 30px;
+}
+
+.done{
+text-decoration: line-through;
+}
+span{
+margin-left: 0;
+}
+
+li{
+border-radius: 5px;
+border: 1px solid grey;
+font-size: 15px;
+font-weight: bold;
+margin-top: 15px;
+padding: 10px;
+width: 50%;
+display: flex;
+}
+input{
+margin-right: 15px;
+vertical-align: middle;
+}
+button{
+width: 20px;
+height: 20px;
+margin-right: 0;
+margin-left: 15px;
+border-radius: 10px;
+display: flex;
+justify-content: center;
+background-color: red;
+border: none;
+}
+small{
+vertical-align: bottom;
+margin: 0;
+font-weight: normal;
+font-size: 10px;
+}
