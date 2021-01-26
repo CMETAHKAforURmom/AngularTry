@@ -1,11 +1,22 @@
-<ul>
-  <li *ngFor="let todo of todos; let i = index">
+<div *ngIf = "!loading">
+
+  <input type="text" placeholder="Filter by title" class="search" (keypress) = 'filterStart' [(ngModel)] = 'titleFinder'>
+
+  <ul *ngIf="todosService.todos.length; else noTodos">
+    <li *ngFor="let todo of todosService.todos | todosFilter: titleFinder; let i = index">
     <span [class.done] = "todo.completed">
       <input type="checkbox" [checked] = "todo.completed" (change) = "onChange(todo.id)">
       <strong>{{i + 1 }}.</strong>
       {{todo.title}}
     </span>
-    <small>{{todo.date | date:'short'}}</small>
-    <button>&times;</button>
-  </li>
-</ul>
+      <small>{{todo.date | date:'short'}}</small>
+      <button (click) = "removeTodo(todo.id)">&times;</button>
+    </li>
+  </ul>
+
+  <ng-template #noTodos>
+    <p> Пусто</p>
+  </ng-template>
+</div>
+
+<p *ngIf = "loading"> Load...</p>

@@ -1,23 +1,33 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Todos} from '../app.component';
+import {TodosService} from '../shares/todo_services';
 
 
 @Component({
-  selector: 'app-todos',
+  selector: 'app-todo',
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.css', '../app.component.css']
 })
 export class TodosComponent implements OnInit {
 
-  @Input() todos: Todos[] = []
-  @Output() onToggle = new EventEmitter<number>()
+  public loading: boolean = true;
 
-  constructor() { }
+  constructor(public todosService: TodosService) { }
 
   ngOnInit() {
+  this.todosService.fetchTodos().subscribe(() => {
+  this.loading = false
+  })
   }
 
   onChange(id: number){
-  this.onToggle.emit(id)
+  this.todosService.onToggle(id)
+  }
+
+  removeTodo(id: number){
+  this.todosService.removeTodo(id);
+  }
+
+  filterStart(){
+    
   }
 }
